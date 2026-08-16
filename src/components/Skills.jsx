@@ -7,7 +7,7 @@ import { Element } from "react-scroll";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Title from "./Title";
 // Config
-import { skillData, resume } from "../config";
+import { skillData, resumes } from "../config";
 
 // #region component
 const Skills = () => {
@@ -32,8 +32,8 @@ const Skills = () => {
               );
             })}
           </Row>
-          {resume && (
-            <a href={resume}>
+          {resumes.length !== 0 && (
+            <a href={resumes[0].file}>
               <Button
                 size="lg"
                 variant={theme === "light" ? "outline-dark" : "outline-light"}

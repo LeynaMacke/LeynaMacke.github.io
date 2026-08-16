@@ -4,18 +4,12 @@ import { ThemeProvider } from "styled-components";
 // State
 import { useDispatch, useSelector } from "react-redux";
 import { selectMode, setMode } from "./app/appSlice";
-import {
-  setProjects,
-  setMainProjects,
-  selectProjects,
-} from "./app/projectsSlice";
-import { useGetUsersQuery, useGetProjectsQuery } from "./app/apiSlice";
-import PropTypes from "prop-types";
+import { useGetUsersQuery } from "./app/apiSlice";
 // Router
 import { HashRouter, Routes, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
-import AllProjects from "./pages/AllProjects";
+import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
 // Components
 import { ErrorBoundary } from "react-error-boundary";
@@ -28,83 +22,22 @@ import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 // Config
-import { footerTheme, navLogo } from "./config";
+import { footerTheme } from "./config";
 // Util
-import { getStoredTheme, getPreferredTheme, setTheme } from "./utils";
+import {
+  getStoredTheme,
+  getPreferredTheme,
+  setTheme,
+  updateFavicon,
+} from "./utils";
 
 // #region component
-const propTypes = {
-  filteredProjects: PropTypes.arrayOf(PropTypes.string),
-  projectCardImages: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      image: PropTypes.node.isRequired,
-    })
-  ),
-};
-
-const App = ({ projectCardImages = [], filteredProjects = [] }) => {
+const App = () => {
   const theme = useSelector(selectMode);
-  const projects = useSelector(selectProjects);
   const dispatch = useDispatch();
-  const { isLoading, isSuccess, isError, error } = useGetUsersQuery();
-  const { data: projectsData } = useGetProjectsQuery();
+  const { data: userData, isLoading, isSuccess, isError, error } =
+    useGetUsersQuery();
   let content;
-
-  // Set all projects state
-  React.useEffect(() => {
-    const tempData = [];
-    if (projectsData !== undefined && projectsData.length !== 0) {
-      projectsData.forEach((element) => {
-        const tempObj = {
-          id: null,
-          homepage: null,
-          description: null,
-          image: null,
-          name: null,
-          html_url: null,
-        };
-        tempObj.id = element.id;
-        tempObj.homepage = element.homepage;
-        tempObj.description = element.description;
-        tempObj.name = element.name;
-        tempObj.html_url = element.html_url;
-        tempData.push(tempObj);
-      });
-      if (
-        projectCardImages !== (undefined && null) &&
-        projectCardImages.length !== 0
-      ) {
-        projectCardImages.forEach((element) => {
-          tempData.forEach((ele) => {
-            if (element.name.toLowerCase() === ele.name.toLowerCase()) {
-              ele.image = element.image;
-            }
-          });
-        });
-      }
-      dispatch(setProjects(tempData));
-    }
-  }, [projectsData, projectCardImages, dispatch]);
-
-  // Set main projects state
-  React.useEffect(() => {
-    if (projects.length !== 0) {
-      if (
-        filteredProjects !== (undefined && null) &&
-        filteredProjects.length !== 0
-      ) {
-        const tempArray = projects.filter((obj) =>
-          filteredProjects.includes(obj.name)
-        );
-        tempArray.length !== 0
-          ? dispatch(setMainProjects([...tempArray]))
-          : dispatch(setMainProjects([...projects.slice(0, 3)]));
-      } else {
-        dispatch(setMainProjects([...projects.slice(0, 3)]));
-      }
-    }
-  }, [projects, filteredProjects, dispatch]);
 
   // Theme
   const setThemes = React.useCallback(
@@ -123,6 +56,11 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
   React.useEffect(() => {
     setThemes();
   }, [setThemes]);
+
+  // Favicon - use the GitHub avatar fetched from the API
+  React.useEffect(() => {
+    updateFavicon(userData?.avatar_url);
+  }, [userData]);
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
@@ -143,11 +81,11 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
     content = (
       <>
         <Element name={"Home"} id="home">
-          <NavBar Logo={navLogo} callBack={(theme) => setThemes(theme)} />
+          <NavBar callBack={(theme) => setThemes(theme)} />
         </Element>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/All-Projects" element={<AllProjects />} />
+          <Route path="/Resume" element={<Resume />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer mode={footerTheme} />
@@ -180,7 +118,6 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
   );
 };
 
-App.propTypes = propTypes;
 // #endregion
 
 export default App;

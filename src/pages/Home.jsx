@@ -4,11 +4,11 @@ import { useGetUsersQuery } from "../app/apiSlice";
 // Components
 import Hero from "../components/Hero";
 import AboutMe from "../components/AboutMe";
-import Projects from "../components/Projects";
+import Videos from "../components/Videos";
 import Contact from "../components/Contact";
 import BackToTop from "../components/BackToTop";
 // Config
-import { filteredProjects, moreInfo } from "../config";
+import { moreInfo, name } from "../config";
 // Utils
 import { updateTitle } from "../utils";
 
@@ -17,19 +17,19 @@ const Home = () => {
   const { data: userData } = useGetUsersQuery();
 
   React.useEffect(() => {
-    updateTitle(`${userData.name} | Portfolio`);
-  }, [userData]);
+    updateTitle(`${name} | Portfolio`);
+  }, []);
 
   return (
     <>
-      <Hero name={userData.name} />
+      <Hero name={name} />
       <main>
         <AboutMe
           avatar_url={userData.avatar_url}
           bio={userData.bio}
           moreInfo={moreInfo}
         />
-        <Projects filteredProjects={filteredProjects} />
+        <Videos />
         <Contact />
       </main>
       <BackToTop />

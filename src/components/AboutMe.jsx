@@ -2,11 +2,16 @@ import React from "react";
 // Styles
 import styled from "styled-components";
 // State
+import { useSelector } from "react-redux";
+import { selectMode } from "../app/appSlice";
 import PropTypes from "prop-types";
+// Router
+import { Link } from "react-router-dom";
 // Components
 import { Element } from "react-scroll";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import Title from "./Title";
+import ScrollDown from "./ScrollDown";
 
 // #region styled-components
 const StyledAboutMe = styled.section`
@@ -28,6 +33,8 @@ const propTypes = {
 };
 
 const AboutMe = ({ avatar_url, bio, moreInfo }) => {
+  const theme = useSelector(selectMode);
+
   return (
     <Element name={"About"} id="about">
       <StyledAboutMe className="section">
@@ -52,6 +59,17 @@ const AboutMe = ({ avatar_url, bio, moreInfo }) => {
               />
             </Col>
           </Row>
+          <Container className="text-center mt-5">
+            <Link to="/Resume">
+              <Button
+                size="lg"
+                variant={theme === "light" ? "outline-dark" : "outline-light"}
+              >
+                View Resume
+              </Button>
+            </Link>
+          </Container>
+          <ScrollDown to="Videos" />
         </Container>
       </StyledAboutMe>
     </Element>

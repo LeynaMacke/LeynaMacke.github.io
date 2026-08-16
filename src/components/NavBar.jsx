@@ -6,8 +6,6 @@ import { selectMode } from "../app/appSlice";
 import PropTypes from "prop-types";
 // Router
 import { Link, useLocation } from "react-router-dom";
-// Images
-import defaultLogo from "../images/defaultNavLogo.svg";
 // Components
 import { Link as ScrollLink } from "react-scroll";
 import { Container, Nav, Navbar } from "react-bootstrap";
@@ -17,13 +15,13 @@ import ThemeToggle from "./ThemeToggle";
 const navLinks = {
   routes: [
     { id: "1R", name: "Home", route: "/" },
-    { id: "2R", name: "All Projects", route: "/All-Projects" },
+    { id: "2R", name: "Resume", route: "/Resume" },
   ],
   to: [
     { id: "1T", name: "Home", to: "Home" },
     { id: "2T", name: "About Me", to: "About" },
-    { id: "4T", name: "Projects", to: "Projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    { id: "5T", name: "Videos", to: "Videos" },
+    { id: "6T", name: "Contact", to: "Contact" },
   ],
 };
 // #endregion
@@ -37,22 +35,16 @@ const StyledDiv = styled.div`
   .spacer {
     height: var(--nav-height);
   }
-
-  .logo-img {
-    background: ${({ theme }) =>
-      theme.name === "light" ? "var(--bs-dark)" : "var(--bs-light)"};
-  }
 `;
 // #endregion
 
 // #region component
 const propTypes = {
-  Logo: PropTypes.node,
   callBack: PropTypes.func,
   closeDelay: PropTypes.number,
 };
 
-const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
+const NavBar = ({ callBack, closeDelay = 125 }) => {
   const theme = useSelector(selectMode);
   const [isExpanded, setisExpanded] = React.useState(false);
   const { pathname } = useLocation();
@@ -70,16 +62,8 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
         fixed="top"
       >
         <Container>
-          <Navbar.Brand>
-            <img
-              alt="Logo"
-              src={Logo === null ? defaultLogo : Logo}
-              width="35"
-              height="35"
-              className="rounded-circle logo-img"
-            />
-          </Navbar.Brand>
           <Navbar.Toggle
+            className="ms-auto"
             aria-controls="responsive-navbar-nav"
             onClick={() => setisExpanded(!isExpanded)}
           />
@@ -126,8 +110,23 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                       </Nav.Item>
                     );
                   })}
+              {pathname === "/" && (
+                <Nav.Item>
+                  <Link
+                    to="/Resume"
+                    className="nav-link"
+                    onClick={() => {
+                      setTimeout(() => {
+                        setisExpanded(false);
+                      }, closeDelay);
+                    }}
+                  >
+                    Resume
+                  </Link>
+                </Nav.Item>
+              )}
             </Nav>
-            <Nav>
+            <Nav className="ms-auto">
               <ThemeToggle
                 closeDelay={closeDelay}
                 setExpanded={setisExpanded}

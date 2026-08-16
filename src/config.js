@@ -1,6 +1,3 @@
-// Skills icons - https://icon-sets.iconify.design/
-import { Icon } from "@iconify/react";
-
 // Navbar Logo image (add your image to the src/images directory and uncomment the line below to import your image)
 // import newLogo from "./images/yourFileName"
 
@@ -8,14 +5,17 @@ import { Icon } from "@iconify/react";
 import HeroLight from "./images/hero-light.jpg";
 import HeroDark from "./images/hero-dark.jpg";
 
-// Projects Images (add your images to the images directory and import below)
-import Logo from "./images/logo.svg";
+// Hero section image (replace with your own file in src/images)
+import HeroImage from "./images/logo.svg";
 
 /* START HERE
  **************************************************************
   Add your GitHub username (string - "YourUsername") below.
 */
 export const githubUsername = "LeynaMacke";
+
+// Name shown in the hero section
+export const name = githubUsername;
 
 // Navbar Logo image
 export const navLogo = null;
@@ -29,6 +29,22 @@ export const Blog = null;
 // Hero images (imported above - lines 8-9)
 export { HeroLight as Light };
 export { HeroDark as Dark };
+
+// Hero section image (imported above)
+export { HeroImage };
+
+/* Social Links
+ **************************************************************
+  Add or remove links below. Icons - https://icon-sets.iconify.design/
+*/
+export const socialLinks = [
+  {
+    id: "instagram",
+    url: "https://www.instagram.com/leyna_1_renee",
+    icon: "fa-brands:instagram-square",
+    label: "Instagram",
+  },
+];
 
 /* About Me
  **************************************************************
@@ -45,20 +61,44 @@ export const skillData = [
   },
 ];
 
-// Resume link (string - "https://YourResumeUrl") - I am using CloudFront to share my resume (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
-export const resume = "https://leynamacke.com/resume.pdf";
-
-/* Projects
- ************************************************************** 
-  List the repo names (string - "your-repo-name") you want to include (they will be sorted alphabetically). If empty, only the first 3 will be included.
+/* Resumes
+ **************************************************************
+  PDFs are served from the public directory. Add the file to /public and
+  reference it by filename below.
 */
-export const filteredProjects = ["example-1", "example-2", "example-3"];
-
-// Replace the defualt GitHub image for matching repos below (images imported above - lines 7-8)
-export const projectCardImages = [
+export const resumes = [
   {
-    name: "example-1",
-    image: Logo,
+    id: "performance",
+    name: "Performance",
+    file: `${process.env.PUBLIC_URL}/resume.pdf`,
+  },
+  {
+    id: "tech",
+    name: "Tech",
+    file: `${process.env.PUBLIC_URL}/resume-tech.pdf`,
+  },
+];
+
+/* Videos
+ **************************************************************
+  Add YouTube videos below. `id` is the part after "watch?v=" in the URL.
+*/
+export const videoData = [
+  {
+    id: "YrdFf1jgeeM",
+    title: "Skills Reel",
+  },
+  {
+    id: "Hn7PBiht7ds",
+    title: "Vocal Reel",
+  },
+  {
+    id: "jdijBwREoYQ",
+    title: "Puppet Reel",
+  },
+  {
+    id: "rkGt2d0IUEs",
+    title: "Dance Reel",
   },
 ];
 

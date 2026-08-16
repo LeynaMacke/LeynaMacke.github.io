@@ -1,6 +1,23 @@
 // Update tab title
 export const updateTitle = (title) => (document.title = title);
 
+// Update tab icon (GitHub avatars accept a `s` size param)
+export const updateFavicon = (url) => {
+  if (!url) return;
+  const icon =
+    document.querySelector("link[rel='icon']") ??
+    document.head.appendChild(
+      Object.assign(document.createElement("link"), { rel: "icon" })
+    );
+  icon.type = "image/png";
+  icon.href = `${url}${url.includes("?") ? "&" : "?"}s=64`;
+
+  const appleIcon = document.querySelector("link[rel='apple-touch-icon']");
+  if (appleIcon) {
+    appleIcon.href = `${url}${url.includes("?") ? "&" : "?"}s=192`;
+  }
+};
+
 // Theme
 export const getStoredTheme = () => localStorage.getItem("theme");
 

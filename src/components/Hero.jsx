@@ -1,29 +1,17 @@
 import React from "react";
 // Styles
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 // State
 import PropTypes from "prop-types";
-// Icons
-import { Icon } from "@iconify/react";
-// Images
-import Logo from "../images/logo.svg";
-import { Light, Dark } from "../config";
+// Config
+import { HeroImage, Light, Dark } from "../config";
 // Components
 import { useErrorBoundary } from "react-error-boundary";
-import { Link } from "react-scroll";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import SocialLinks from "./SocialLinks";
+import ScrollDown from "./ScrollDown";
 
 // #region styled-components
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
 const StyledHero = styled.header`
   position: relative;
   display: grid;
@@ -65,12 +53,6 @@ const StyledHero = styled.header`
     height: 10rem;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-img {
-      animation: ${spin} infinite 20s linear;
-    }
-  }
-
   @media screen and (min-width: 1180px) {
     &::before {
       background: ${({ theme }) =>
@@ -106,26 +88,18 @@ const Hero = ({ name }) => {
       <Container>
         <Row className="align-items-center text-center">
           <Col>
-            <h1 className="mb-3 display-3 title">
-              {name === null ? "null" : name}
-            </h1>
+            <h1 className="mb-3 display-3 title">{name}</h1>
             <div className="d-flex align-items-center justify-content-center">
               <SocialLinks />
             </div>
           </Col>
           <Col className="d-none d-md-block">
-            <img
-              src={Logo}
-              alt="React Logo"
-              className="w-75 mx-auto hero-img"
-            />
+            <img src={HeroImage} alt={name} className="w-75 mx-auto hero-img" />
           </Col>
         </Row>
         <Row className="align-items-end down-container">
           <Col className="m-4 text-center">
-            <Link to={"About"} className="link-icons">
-              <Icon icon="fa6-solid:circle-chevron-down" />
-            </Link>
+            <ScrollDown to="About" className="" />
           </Col>
         </Row>
         <Button
