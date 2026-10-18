@@ -4,7 +4,6 @@ import styled from "styled-components";
 // State
 import PropTypes from "prop-types";
 // Config
-import { HeroImage, Light, Dark } from "../config";
 // Components
 import { useErrorBoundary } from "react-error-boundary";
 import { Button, Col, Container, Row } from "react-bootstrap";
