@@ -41,18 +41,20 @@ export const socialLinks = [
     icon: "fa-brands:instagram-square",
     label: "Instagram",
   },
+    {
+    id: "facebook",
+    url: "https://www.facebook.com/share/1cZExLdZBJ/?mibextid=wwXIfr",
+    icon: "fa-brands:facebook",
+    label: "Facebook",
+  },
 ];
 
 /* About Me
  **************************************************************
   Add a second paragraph for the about me section.
 */
-export const moreInfo =
-"Leyna Macke is a theatre artist based out of Fort Wayne, Indiana. She is currently pursuing a BFA in Musical Theatre at Purdue University Fort Wayne expected fall '26. She has also completed the Comedy Studies program at the Second City through Columbia College Chicago. Leyna has worked both on and off stage at PFW and various theatres in the Fort Wayne area.";
-/* Skills
- ************************************************************** 
-  Add or remove skills in the SAME format below, choose icons here - https://icon-sets.iconify.design/
-*/
+export const moreInfo = "I am a theatre artist based out of Fort Wayne, Indiana. I'm currently pursuing my BFA in Musical Theatre at Purdue University Fort Wayne and plan to graduate spring '27. I have also completed the Comedy Studies program at the Second City through Columbia College Chicago. In my free time, I enjoy outdoor activities such as hiking, skiing, and rafting. I love reading and will happily discuss books with you!";
+
 export const skillData = [
   {
   },
