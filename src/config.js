@@ -5,8 +5,7 @@
 import HeroLight from "./images/hero-light.jpg";
 import HeroDark from "./images/hero-dark.jpg";
 
-// Hero section image (replace with your own file in src/images)
-import HeroImage from "./images/logo.svg";
+
 
 /* START HERE
  **************************************************************
