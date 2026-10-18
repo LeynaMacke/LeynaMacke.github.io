@@ -29,8 +29,6 @@ export const Blog = null;
 export { HeroLight as Light };
 export { HeroDark as Dark };
 
-// Hero section image (imported above)
-export { HeroImage };
 
 /* Social Links
  **************************************************************

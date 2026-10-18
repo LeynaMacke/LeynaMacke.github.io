@@ -32,9 +32,6 @@ const StyledNotFound = styled.main`
     font-size: 2rem;
   }
 
-  .logo-img {
-    width: 10rem;
-  }
 
   @media (prefers-reduced-motion: no-preference) {
     img {
@@ -55,7 +52,6 @@ const NotFound = () => {
       <StyledNotFound>
         <Container className="d-flex justify-content-center">
           <span>4</span>
-          <img src={Logo} alt="React Logo" className="logo-img" />
           <span>4</span>
         </Container>
         <p className="text-center">Sorry, page not found...</p>
