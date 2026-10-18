@@ -4,6 +4,8 @@ import styled from "styled-components";
 // State
 import PropTypes from "prop-types";
 // Config
+import { Light, Dark } from "../config";
+
 // Components
 import { useErrorBoundary } from "react-error-boundary";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -93,7 +95,6 @@ const Hero = ({ name }) => {
             </div>
           </Col>
           <Col className="d-none d-md-block">
-            <img src={HeroImage} alt={name} className="w-75 mx-auto hero-img" />
           </Col>
         </Row>
         <Row className="align-items-end down-container">
