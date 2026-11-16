@@ -91,24 +91,25 @@ export const resumes = [
   Add YouTube videos below. `id` is the part after "watch?v=" in the URL.
 */
 export const videoData = [
- /* 
+  
   {
-    id: "YrdFf1jgeeM",
+    id: "9JTA29iAkR0",
     title: "Skills Reel",
   },
   {
-    id: "Hn7PBiht7ds",
+    id: "K8O5224gp4k",
     title: "Vocal Reel",
   },
   {
-    id: "jdijBwREoYQ",
+    id: "oPKNwlD69j8",
     title: "Puppet Reel",
   },
+  /*
   {
     id: "rkGt2d0IUEs",
     title: "Dance Reel",
   },
-*/  
+  *\
 ];
 
 
